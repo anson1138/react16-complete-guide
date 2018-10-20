@@ -1,26 +1,61 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserInput from './User/UserInput.js';
+import UserOutput from './User/UserOutput.js';
 
 class App extends Component {
+  state = {
+    persons: [
+      { username: "anson" },
+      { username: "lilian" }
+    ],
+    shouldShowUser: false
+  }
+
+  userHandler = () => {
+    const doUsers = this.state.shouldShowUser;
+    this.setState({shouldShowUser: !doUsers})
+
+
+  }
+
+  userInputHandler = (event) => {
+    this.setState({
+      persons: [
+        { username: "anson" },
+        { username: event.target.value }
+      ]
+    })
+
+  }
+
   render() {
+
+    let users = null
+
+    if (this.state.shouldShowUser) {
+      users= (
+          <div>
+            <button style={style} onClick={this.userHandler}>Switch Button</button>
+            <UserOutput username={this.state["persons"][0]["username"]} />
+            <UserOutput username={this.state["persons"][1]["username"]} />
+            <UserInput
+              username={this.state["persons"][1]["username"]}
+              change={this.userInputHandler} />
+          </div>
+      )
+    };
+    const style = {
+      padding: '8px',
+      border: '1x solid blue',
+    }
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+
+      <div>
+            <button style={style} onClick={this.userHandler}>Switch Button</button>
+            {users}
       </div>
+
     );
   }
 }
