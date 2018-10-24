@@ -26,11 +26,11 @@ class App extends Component {
 
   userInputHandler = (event, id) => {
     const userIndex = this.state.persons.findIndex( (p) => {
-      return p.id == id;
+      return p["id"] === id;
     })
 
     const person = {...this.state.persons[userIndex]}
-    person.username = event.target.value
+    person["username"] = event.target.value
 
     const persons = [...this.state.persons]
     persons[userIndex] = person
@@ -38,7 +38,6 @@ class App extends Component {
     this.setState({
       persons: persons
     })
-
   }
 
   deleteUser = (index) => {
@@ -49,11 +48,16 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      padding: '8px',
+      border: '1x solid blue',
+      backgroundColor: 'blue'
+    }
 
     let users = null
 
     if (this.state.shouldShowUser) {
-
+      style.backgroundColor = 'yellow';
       users = (
         <div>
           {
@@ -64,10 +68,7 @@ class App extends Component {
               key={person["id"]}
               />
               )
-
-
             })
-
           }
           {
             this.state.persons.map(person => {
@@ -76,33 +77,19 @@ class App extends Component {
                    change={(event) => {this.userInputHandler(event, person["id"])}}
                    username={person["username"]}
                    key={person["id"]}
-
                  />
-
                 )
             })
-
-
-
           }
-
-
-
-
         </div>
         )
     };
-    const style = {
-      padding: '8px',
-      border: '1x solid blue',
-    }
-    return (
 
+    return (
       <div>
             <button style={style} onClick={this.userHandler}>Switch Button</button>
             {users}
       </div>
-
     );
   }
 }
