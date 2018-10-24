@@ -3,7 +3,12 @@ import './User.css'
 
 const UserOutput = (props) => {
     return (
-        <p className="User">{props.username}</p>
+        <div>
+        <p onClick={props.click}
+           className="User" >
+           My name is: {props.username}
+       </p>
+       </div>
         );
 
 }
