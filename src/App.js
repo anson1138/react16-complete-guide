@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import UserInput from './User/UserInput.js';
 import UserOutput from './User/UserOutput.js';
+import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   state = {
@@ -51,13 +52,19 @@ class App extends Component {
     const style = {
       padding: '8px',
       border: '1x solid blue',
-      backgroundColor: 'blue'
+      backgroundColor: 'blue',
+      ':hover': {
+        backgroundColor: 'lightgreen'
+      }
     }
 
     let users = null
 
     if (this.state.shouldShowUser) {
       style.backgroundColor = 'yellow';
+      style[':hover'] = {
+        backgroundColor: 'salmon'
+      }
       users = (
         <div>
           {
@@ -85,16 +92,29 @@ class App extends Component {
         )
     };
 
+    const dynamic_classes = [];
+
+    if (this.state.persons.length <= 2) {
+      dynamic_classes.push('red')
+    }
+
+    if (this.state.persons.length <= 1) {
+      dynamic_classes.push('bold')
+    }
+
     return (
+      <StyleRoot>
       <div>
+            <p className={dynamic_classes.join(' ')}>This is really working! </p>
             <button style={style} onClick={this.userHandler}>Switch Button</button>
             {users}
       </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
 
 
           //<UserInput

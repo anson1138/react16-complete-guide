@@ -30,3 +30,11 @@
     transform: rotate(360deg);
   }
 }
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}
