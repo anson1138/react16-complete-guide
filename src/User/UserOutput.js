@@ -1,18 +1,11 @@
 import React from 'react';
-import Radium from 'radium';
-import './User.css';
+import classes from './User.module.scss';
 
 const UserOutput = (props) => {
-    const style = {
-        '@media (min-width: 500px)': {
-            width: '450px'
-        }
-    }
     return (
         <div>
         <p onClick={props.click}
-           className="User"
-           style={style} >
+           className={classes.User} >
            My name is: {props.username}
        </p>
        </div>
@@ -20,4 +13,4 @@ const UserOutput = (props) => {
 
 }
 
-export default Radium(UserOutput);
+export default UserOutput;

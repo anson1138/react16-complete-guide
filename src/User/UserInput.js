@@ -1,10 +1,9 @@
 import React from 'react';
-import './User.css';
-import Radium from 'radium';
+import classes from './User.module.scss';
 
 const UserInput = (props) => {
    return (
-    <div className="User">
+    <div className={classes.User}>
        <input
            type="text"
            onChange={props.change}
@@ -15,4 +14,4 @@ const UserInput = (props) => {
 
 }
 
-export default Radium(UserInput);
+export default UserInput;

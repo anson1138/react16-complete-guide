@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.scss';
 import UserInput from './User/UserInput.js';
 import UserOutput from './User/UserOutput.js';
-import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
   state = {
@@ -49,22 +48,10 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      padding: '8px',
-      border: '1x solid blue',
-      backgroundColor: 'blue',
-      ':hover': {
-        backgroundColor: 'lightgreen'
-      }
-    }
-
     let users = null
+    let buttonStyle = ''
 
     if (this.state.shouldShowUser) {
-      style.backgroundColor = 'yellow';
-      style[':hover'] = {
-        backgroundColor: 'salmon'
-      }
       users = (
         <div>
           {
@@ -90,31 +77,32 @@ class App extends Component {
           }
         </div>
         )
+
+      buttonStyle = classes.Red
+
     };
 
     const dynamic_classes = [];
 
     if (this.state.persons.length <= 2) {
-      dynamic_classes.push('red')
+      dynamic_classes.push(classes.red)
     }
 
     if (this.state.persons.length <= 1) {
-      dynamic_classes.push('bold')
+      dynamic_classes.push(classes.bold)
     }
 
     return (
-      <StyleRoot>
-      <div>
+      <div className={classes.App}>
             <p className={dynamic_classes.join(' ')}>This is really working! </p>
-            <button style={style} onClick={this.userHandler}>Switch Button</button>
+            <button className={buttonStyle} onClick={this.userHandler}>Switch Button</button>
             {users}
       </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;
 
 
           //<UserInput
