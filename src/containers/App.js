@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import classes from './App.module.scss';
 import Cockpit from '../components/Cockpit/Cockpit'
 import Users from '../components/Users/Users';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
 //import UserOutput from '../components/Users/User/UserOutput.js';
 
 class App extends Component {
@@ -24,12 +26,19 @@ class App extends Component {
       }
 
     ],
-    showUsers: false
+    showUsers: false,
+    toggleClicked: 0
   }
 
   userHandler = () => {
     const doUsers = this.state.showUsers;
-    this.setState({showUsers: !doUsers})
+    this.setState((prevState, props) => {
+      return {
+        showUsers: !doUsers,
+        toggleClicked: prevState.toggleClicked +1
+
+      }
+    })
   }
 
   userInputHandler = (event, id) => {
@@ -69,7 +78,7 @@ class App extends Component {
     };
 
     return (
-      <div className={classes.App}>
+      <Aux>
         <Cockpit
           appTitle={this.props.title}
           showUsers={this.state.showUsers}
@@ -77,12 +86,12 @@ class App extends Component {
           clicked={this.userHandler} />
 
             {users}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
 
 
           //<UserInput

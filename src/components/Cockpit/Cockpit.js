@@ -1,11 +1,13 @@
 import React from 'react';
 import classes from './Cockpit.module.scss';
+import Aux from '../../hoc/Aux';
+import withClass from '../../hoc/withClass';
 
 const cockpit =(props) => {
     const assignedClasses = []
-    let buttonStyle = '';
+    let buttonStyle = classes.Button;
     if (props.showUsers) {
-        buttonStyle = classes.Red;
+        buttonStyle = [classes.Button, classes.Button.Red].join(' ');
     }
     if (props.persons.length <= 2) {
       assignedClasses.push(classes.red)
@@ -15,15 +17,14 @@ const cockpit =(props) => {
       assignedClasses.push(classes.bold)
     }
     return (
-        <div className={classes.Cockpit}>
+        <Aux>
             <h1> Hi, I'm a React App and { props.appTitle}</h1>
             <p className={assignedClasses.join(' ')}>This is really working! </p>
             <button
                 className={buttonStyle}
                 onClick={props.clicked}>Toggle Users</button>
-        </div>
-
+        </Aux>
         );
 };
 
-export default cockpit
+export default withClass(cockpit, classes.Cockpit)
