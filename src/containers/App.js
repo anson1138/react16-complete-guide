@@ -6,6 +6,8 @@ import withClass from '../hoc/withClass';
 import Aux from '../hoc/Aux';
 //import UserOutput from '../components/Users/User/UserOutput.js';
 
+export const AuthContext = React.createContext(false);
+
 class App extends Component {
   state = {
     persons: [
@@ -27,6 +29,7 @@ class App extends Component {
 
     ],
     showUsers: false,
+    authenticated: false,
     toggleClicked: 0
   }
 
@@ -39,6 +42,10 @@ class App extends Component {
 
       }
     })
+  }
+
+  loginHandler = () => {
+    this.setState({authenticated: true})
   }
 
   userInputHandler = (event, id) => {
@@ -83,9 +90,11 @@ class App extends Component {
           appTitle={this.props.title}
           showUsers={this.state.showUsers}
           persons={this.state.persons}
+          login={this.loginHandler}
           clicked={this.userHandler} />
-
-            {users}
+          <AuthContext.Provider value={this.state.authenticated}>
+          {users}
+          </AuthContext.Provider>
       </Aux>
     );
   }

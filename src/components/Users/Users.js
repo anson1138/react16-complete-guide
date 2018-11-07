@@ -9,6 +9,8 @@ class Users extends Component {
                 return <UserOutput
                     click={() => this.props.clicked(index)}
                     username={person.username}
+                    index={index}
+                    authenticated={this.props.isAuthenticated}
                     age={person.age}
                     key={person.id}
                     changed={(event) => this.props.changed(event, person.id)} />
