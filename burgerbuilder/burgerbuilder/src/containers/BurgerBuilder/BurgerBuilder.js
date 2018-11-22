@@ -49,7 +49,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        alert('Branden, Josh, and Cam pipe down!!!');
+        alert('American Citizenbutt!!!');
     }
 
     // addIngredientHandler = (type) => {
@@ -128,6 +128,7 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     <OrderSummary
                         ingredients={this.state.ingredients}
+                        price={this.state.totalPrice}
                         purchaseCancelled={this.purchaseCancelHandler}
                         purchaseContinued={this.purchaseContinueHandler}
                      />
