@@ -16,7 +16,8 @@ class App extends Component {
     return (
       <div>
       <Layout>
-          {this.state.show ? <BurgerBuilder /> : null}
+          {/* {this.state.show ? <BurgerBuilder /> : null} */}
+          <BurgerBuilder />
       </Layout>
       </div>
     );
